@@ -1,0 +1,33 @@
+{
+    "name": "Orgrimar",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node ./bin/www"
+    },
+    "dependencies": {
+        "express": "latest",
+        "serve-favicon": "latest",
+        "morgan": "latest",
+        "cookie-parser": "latest",
+        "body-parser": "latest",
+        "method-override": "latest",
+        "debug": "latest",
+        "jade": "latest",
+        "mongoose": "~3.8.12",
+        "passport": "latest",
+        "passport-local": "latest",
+        "express-session": "latest",
+        "connect-mongo": "latest",
+        "connect-flash": "latest",
+        "csurf": "latest",
+        "multer": "latest",
+        "express-validator": "latest"
+    },
+    "devDependencies": {
+        "should": "latest",
+        "mocha": "latest",
+        "nodemon": "latest",
+        "supertest": "latest"
+    }
+}
