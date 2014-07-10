@@ -1,0 +1,55 @@
+.modal-header
+    button.close(type='button', data-dismiss='modal')
+        span(aria-hidden='true') ×
+        span.sr-only 关闭
+    h4#avatar_Modal_Label.modal-title #{subTitle}
+    .modal-body
+        form#avatar.form-horizontal(action='/setting/avatar', method='post', role='form')
+            fieldset
+                // Form Name
+                legend
+                input(type='hidden', name='_csrf', value='#{csrf_token}')
+                // File Button
+                .control-group
+                    label.control-label(for='media') 照片
+                    .controls
+                        input#media.input-file(name='avatar', type='file', , accept='image/*')
+    .modal-footer
+        button#avatar_cancel.btn.btn-default(type='button', data-dismiss='modal') 取消
+        button#avatar_submit.btn.btn-primary(type='button') 保存
+script.
+    $(document).ready(function () {
+        $('#avatar').submit(function(e){
+            var formObj = $(this);
+            var formURL = formObj.attr("action");
+            var formData = new FormData(this);
+            $.ajax({
+                url: formURL,
+                type: 'POST',
+                data:  formData,
+                mimeType:"multipart/form-data",
+                contentType: false,
+                cache: false,
+                processData:false,
+                success: function(data, textStatus, jqXHR){
+                    var response = JSON.parse(data);
+                    $('#avatar_cancel').click();
+                    add_new_blog();
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(errorThrown);
+                },
+                complete:function(){
+                    $('#avatar').each(function(){
+                        this.reset();
+                    });
+                }
+            });
+            e.preventDefault(); //Prevent Default action.
+            //e.unbind();
+        });
+        $('#avatar_submit').click(function () {
+            $('#avatar').submit();
+            return false;
+        });
+    });

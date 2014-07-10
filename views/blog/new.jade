@@ -1,0 +1,44 @@
+.modal-header
+    button.close(type='button', data-dismiss='modal')
+        span(aria-hidden='true') ×
+        span.sr-only 关闭
+    h4#blog_Modal_Label.modal-title #{subTitle}
+    .modal-body
+        include _form
+    .modal-footer
+        button#add_blog_cancel.btn.btn-default(type='button', data-dismiss='modal') 取消
+        button#add_blog_submit.btn.btn-primary(type='button') 保存
+script.
+    $(document).ready(function () {
+        $('#blog').submit(function(e){
+            var formObj = $(this);
+            var formURL = formObj.attr("action");
+            var formData = new FormData(this);
+            $.ajax({
+                url: formURL,
+                type: 'POST',
+                data:  formData,
+                mimeType:"multipart/form-data",
+                contentType: false,
+                cache: false,
+                processData:false,
+                success: function(data, textStatus, jqXHR){
+                    $('#add_blog_cancel').click();
+                    add_new_blog();
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(errorThrown);
+                },
+                complete:function(){
+                    $('#blog').each(function(){
+                        this.reset();
+                    });
+                }
+            });
+            e.preventDefault();
+        });
+        $('#add_blog_submit').click(function () {
+            $('#blog').submit();
+            return false;
+        });
+    });

@@ -1,0 +1,47 @@
+#navbar
+    div.navbar.navbar-default.navbar-fixed-top.drop-shadow.bottom(role='navigation')
+        div.container
+            //- Brand and toggle get grouped for better mobile display
+            div.navbar-header
+                button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                    span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                a.navbar-brand(href='#') Project name
+            div.navbar-collapse.collapse
+                ul.nav.navbar-nav
+
+                ul.nav.navbar-nav.navbar-right
+                    li
+                        a.active.pu(href='/', data-toggle='tooltip', data-placement='bottom', title='家庭日记')
+                            span.glyphicon.glyphicon-book
+                    li
+                        a.pu(href='/', data-toggle='tooltip', data-placement='bottom', title='育婴问答')
+                            span.glyphicon.glyphicon-question-sign
+                    li
+                        a.pu(href='/', data-toggle='tooltip', data-placement='bottom', title='宝贝相册')
+                            span.glyphicon.glyphicon-camera
+                    li
+                        a.pu(href='/', data-toggle='tooltip', data-placement='bottom', title='海涛高手')
+                            span.glyphicon.glyphicon-gift
+                    li
+                        a.pu(href='/', data-toggle='tooltip', data-placement='bottom', title='真心话~')
+                            span.glyphicon.glyphicon-bullhorn
+                    li
+                        a.pu(href='/', data-toggle='tooltip', data-placement='bottom', title='消息')
+                            span.glyphicon.glyphicon-envelope
+                    li.dropdown
+                        a.dropdown-toggle(href='#',data-toggle='dropdown')
+                            img.img-rounded(src='#{user.avatar}')
+                            //= user.email
+                            | 暖暖爸爸
+                        ul.dropdown-menu(role='menu')
+                            li
+                                a.pu(data-placement='bottom', data-toggle='modal', href='/setting/avatar', data-target='#avatar_Modal')
+                                    span.glyphicon.glyphicon-user
+                                    | &nbsp;&nbsp;&nbsp;头像设置
+                            li
+                                a.pu(href='/logout', data-placement='bottom')
+                                    span.glyphicon.glyphicon-off
+                                    | &nbsp;&nbsp;&nbsp;注销

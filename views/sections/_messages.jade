@@ -1,0 +1,26 @@
+.messages
+    .message_box
+        - if (typeof info != 'undefined' && info.length)
+            .fade.in.alert.alert-info
+                button.close(type='button', data-dismiss='alert') ×
+                ul
+                    - each inf in info
+                        li!= inf
+        - if (typeof error != 'undefined' && error.length)
+            .fade.in.alert.alert-danger
+                button.close(type='button', data-dismiss='alert') ×
+                ul
+                    - each err in error
+                        li!= err
+        - if (typeof success != 'undefined' && success.length)
+            .fade.in.alert.alert-success
+                button.close(type='button', data-dismiss='alert') ×
+                ul
+                    - each succ in success
+                        li!= succ
+        - if (typeof warning != 'undefined' && warning.length)
+            .fade.in.alert.alert-warning
+                button.close(type='button', data-dismiss='alert') ×
+                ul
+                    - each warn in warning
+                        li!= warn

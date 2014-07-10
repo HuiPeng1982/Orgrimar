@@ -1,0 +1,11 @@
+tr
+    td
+        .media.card-head
+            a.pull-left(href='#')
+                img.media-object.img-circle(src='#{user.avatar}', alt='...')
+            .media-body
+                h4.media-heading 惠鹏爸爸
+                small
+                    - var m = blog.createdAt;
+                    - var dateString = m.getFullYear() +"/"+("0" + (m.getMonth()+1)).slice(-2) +"/"+("0" + m.getDate()).slice(-2) + " " +("0" + m.getHours()).slice(-2) + ":" +("0" + m.getMinutes()).slice(-2) + ":" +("0" + m.getSeconds()).slice(-2);
+                    em #{dateString}

@@ -1,0 +1,19 @@
+- var action = '/blog'
+    - action += blog.isNew? '/new' : '/' + blog._id
+    form#blog.form-horizontal(action=action, method='post', role='form')
+        fieldset
+            // Form Name
+            legend
+            input(type='hidden', name='_csrf', value='#{csrf_token}')
+            - if (!blog.isNew)
+                input(type="hidden", name="_method", value="PUT")
+            .control-group
+                label.control-label(for='body') 文字内容
+                .controls
+                    textarea#body(name='body')
+                        | #{blog.body}
+            // File Button
+            .control-group
+                label.control-label(for='media') 照片
+                .controls
+                    input#media.input-file(name='media', type='file', , accept='image/*', multiple)

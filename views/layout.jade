@@ -1,7 +1,17 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+    include sections/_head
+    body
+        if path !== '/login' && path !== '/register'
+            include sections/_navbar
+        #kidblr.container
+            block content
+        include sections/_messages
+        include sections/_foot
+        block extra_content
+        include sections/_js
+        block script
+        script.
+            $(document).ready(function () {
+                $('.pu').tooltip();
+            });

@@ -1,0 +1,26 @@
+mixin hat(blog)
+    include ./_card/_card_hat
+mixin head(blog)
+    include ./_card/_card_head
+mixin neck(blog)
+    include ./_card/_card_neck
+mixin body(blog)
+    include ./_card/_card_body
+mixin clothes(blog)
+    include ./_card/_card_clothes
+
+.panel.panel-default.card
+    if blog.hat !== 0 || blog.user.toString === user._id.toString
+        .card-hat
+            +hat(blog)
+    .panel-body.card-up
+        table.table
+            //.card-head
+            +head(blog)
+            //.card-neck
+            +neck(blog)
+            //.card-body
+            +body(blog)
+    if blog.mediaURL
+        .card-clothes.rslides_container
+            +clothes(blog)

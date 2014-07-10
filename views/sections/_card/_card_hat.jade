@@ -1,0 +1,28 @@
+table.table
+    case blog.hat
+        when 1
+            tr
+                td
+                    h6 今日推荐
+                td
+                    h6
+                        span.glyphicon.glyphicon-search.pull-right
+        when 2
+            tr
+                td
+                    h6 热力日记
+                td
+                    h6
+                        span.glyphicon.glyphicon-search.pull-right
+    if blog.user.toString() === user._id.toString()
+        tr
+            td
+                h6 我的日记
+            td
+                h6
+                    a(data-toggle='modal', href='/blog/#{blog._id}/edit', data-target='#blog_Modal', title='修改')
+                        span.glyphicon.glyphicon-pencil.pull-right
+
+                    a.delete_blog(href='/blog/#{blog._id}/delete', title='删除')
+                        span.glyphicon.glyphicon-trash.pull-right
+                            | &nbsp;

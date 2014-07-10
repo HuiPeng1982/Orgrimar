@@ -1,0 +1,45 @@
+mixin blog(blog)
+    include ../sections/_blog
+mixin add_blog()
+    include ../sections/_add_blog
+
+extends ../layout
+block content
+    .row
+        .col-md-4
+            +add_blog()
+            each blog_1 in blogs[0]
+                +blog(blog_1)
+        .col-md-4
+            each blog_2 in blogs[1]
+                +blog(blog_2)
+        .col-md-4
+            each blog_3 in blogs[2]
+                +blog(blog_3)
+    #blog_Modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='blog_Modal_Label', aria-hidden='true')
+        .modal-dialog
+            .modal-content
+    #avatar_Modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='avatar_Modal_Label', aria-hidden='true')
+        .modal-dialog
+            .modal-content
+block script
+    script.
+        var slide_start = function () {
+            $('.rslides').responsiveSlides({
+                auto: false,
+                pager: false,
+                nav: true,
+                speed: 500,
+                maxwidth: 800,
+                namespace: 'centered-btns'
+            })
+        };
+        var add_new_blog = function () {
+            location.reload();
+        };
+        $(document).ready(function () {
+            slide_start();
+            $('.modal').on('hidden.bs.modal', function() {
+                $(this).removeData('bs.modal');
+            });
+        });

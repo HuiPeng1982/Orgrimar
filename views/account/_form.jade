@@ -1,0 +1,7 @@
+- var buttonName = path==='/login'?'登录':'注册'
+form(action='#{path}', method='post', role='form')
+    input(type='hidden', name='_csrf', value='#{csrf_token}')
+    input.form-control(type='email', placeholder='请输入邮箱地址', name='email', required, autofocus)
+    input.form-control(type='password', placeholder='请输入密码', name='password', required)
+    button.btn.btn-lg.btn-primary.btn-block(type='submit') #{buttonName}
+
