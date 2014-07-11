@@ -7,9 +7,12 @@
         include _form
     .modal-footer
         button#add_blog_cancel.btn.btn-default(type='button', data-dismiss='modal') 取消
+        if !blog.isNew
+            button#delete_blog_submit.btn.btn-primary.btn-danger(type='button') 删除
         button#add_blog_submit.btn.btn-primary(type='button') 保存
 script.
     $(document).ready(function () {
+        $('.tokenfield').tokenfield();
         $('#blog').submit(function(e){
             var formObj = $(this);
             var formURL = formObj.attr("action");
@@ -38,6 +41,11 @@ script.
             e.preventDefault();
         });
         $('#add_blog_submit').click(function () {
+            $('#blog').submit();
+            return false;
+        });
+        $('#delete_blog_submit').click(function () {
+            $('input[name="delete"]').val("true");
             $('#blog').submit();
             return false;
         });

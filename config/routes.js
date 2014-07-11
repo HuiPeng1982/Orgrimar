@@ -15,7 +15,7 @@ module.exports = function (app, passport) {
             }
             req.logIn(user, function(err) {
                 if (err) { return done(err); }
-                var url = '/';
+                var url = '/blog';
                 if (req.session && req.session.returnTo) {
                     url = req.session.returnTo;
                     delete req.session.returnTo;
@@ -31,13 +31,14 @@ module.exports = function (app, passport) {
     app.post('/register', account.signup);
 
     app.param('id', blog.load);
+    app.get('/blog', auth.requiresLogin, blog.list);
     app.get('/blog/new', auth.requiresLogin, blog.new);
     app.post('/blog/new', auth.requiresLogin, blog.create);
 
+    app.get('/blog/tags/:tag', auth.requiresLogin, blog.tags);
+
     app.get('/blog/:id/edit', [auth.requiresLogin], blog.edit);
     app.put('/blog/:id', [auth.requiresLogin, auth.hasBlogAuthorization], blog.update);
-
-    app.get('/blog/:id/delete', [auth.requiresLogin, auth.hasBlogAuthorization], blog.delete);
 
     app.get('/setting/avatar', auth.requiresLogin, setting.avatar);
     app.post('/setting/avatar', auth.requiresLogin, setting.new_avatar);

@@ -8,7 +8,13 @@ var mongoose = require('mongoose'),
     fs = require('fs');
 
 exports.list = function(req, res, next){
-    Blog.list({user: req.user._id, delete: false},function (err, blogs) {
+    var criteria = {user: req.user._id, delete: false};
+    var options = {
+//        perPage: perPage,
+//        page: page,
+        criteria: criteria
+    };
+    Blog.list(options, function (err, blogs) {
         if (err) return next(err);
         res.render('blog/list', {
             title: '家庭日记',
@@ -53,16 +59,12 @@ exports.edit = function (req, res) {
     })
 };
 
-exports.delete = function (req, res) {
-    Blog.findByIdAndUpdate(req.blog._id, {delete: true}, function (err, blog) {
-        if (err) return next(err);
-        res.redirect('/')
-    });
-};
-
 exports.update = function (req, res) {
+    var blog = new Blog(req.body);
     var update = {};
-    update.body = req.body.body;
+    update.body = blog.body;
+    update.tags = blog.tags.split(/\s*,\s*/);
+    update.delete = blog.delete;
     if (req.files.media) {
         update.mediaURL = utils.getBlogUploadPath(config, req.files.media);
     }
@@ -70,4 +72,21 @@ exports.update = function (req, res) {
         if (err) return next(err);
         return res.json(200);
     });
+};
+
+exports.tags = function(req, res, next){
+    var criteria = {user: req.user._id, delete: false, tags: new RegExp('^'+ req.param('tag') +'$', "i")};
+    var options = {
+//        perPage: perPage,
+//        page: page,
+        criteria: criteria
+    };
+    Blog.list(options, function (err, blogs) {
+        if (err) return next(err);
+        res.render('blog/list', {
+            title: '家庭日记，' + req.param('tag') + ' 系列',
+            blogs: utils.getStackBlogs(blogs),
+            error: req.flash('error')
+        });
+    })
 };

@@ -6,8 +6,6 @@
     .modal-body
         form#avatar.form-horizontal(action='/setting/avatar', method='post', role='form')
             fieldset
-                // Form Name
-                legend
                 input(type='hidden', name='_csrf', value='#{csrf_token}')
                 // File Button
                 .control-group

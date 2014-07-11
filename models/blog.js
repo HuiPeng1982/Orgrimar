@@ -2,6 +2,14 @@ var utils = require('../lib/utils'),
     mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
+var getTags = function (tags) {
+    return tags.join()
+};
+
+var setTags = function (tags) {
+    return tags.split(/\s*,\s*/)
+};
+
 var BlogSchema = new Schema({
     hat: {type : Number, default : 0},
     body: {type : String, default : '', trim : true},
@@ -12,7 +20,7 @@ var BlogSchema = new Schema({
         repost: { type : Boolean, default : false },
         createdAt: {type : Date, default : Date.now}
     }],
-    tags: [{type : String}],
+    tags: {type: [], get: getTags, set: setTags},
     likes: [{ type : Schema.ObjectId, ref : 'User' }],
     mediaURL: [{type : String}],
     createdAt: {type : Date, default : Date.now},
@@ -50,7 +58,7 @@ BlogSchema.statics = {
     },
 
     list: function (options, cb) {
-        var criteria = options || {};
+        var criteria = options.criteria || {};
 
         this.find(criteria)
 //            .populate('user')

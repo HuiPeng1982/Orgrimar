@@ -1,13 +1,21 @@
+- var tags = blog.tags.toString().replace('<').replace('>');
+- var tagArr = tags.split(',');
+
 tr
     td
         .card-neck
-            ul.list-inline
-                li.pull-right
-                    small
-                        em #吃货秘籍
-                li.pull-right
-                    small
-                        em #woainimen
-                li.pull-right
-                    small
-                        em #haoba
+            ul.list-inline.pull-right
+                if tagArr != ''
+                    each tag in tagArr
+                        - var linkTag = '' + tag.trim()
+                        - var thisTag = '#'+ tag.trim()
+                        li
+                            small
+                                em
+                                    a(href='/blog/tags/#{linkTag}')
+                                        | #{thisTag}
+                if tags == ''
+                    li
+                        a(data-toggle='modal', href='/blog/#{blog._id}/edit', data-target='#blog_Modal')
+                            small
+                                em 添加标签
