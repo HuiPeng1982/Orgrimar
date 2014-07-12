@@ -1,0 +1,5 @@
+.DS_Store/
+.idea/
+config/config.js
+public/uploads/
+node_modules/

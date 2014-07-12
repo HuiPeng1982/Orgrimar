@@ -9,7 +9,7 @@
             .control-group
                 label.control-label(for='body') 文字内容
                 .controls
-                    textarea#body(name='body')
+                    textarea#body.textares(name='body', rows='4')
                         | #{blog.body}
             .control-group
                 label.control-label(for='tags') 标签
@@ -18,4 +18,4 @@
             .control-group
                 label.control-label(for='media') 照片
                 .controls
-                    input#media.input-file(name='media', type='file', , accept='image/*', multiple)
+                    input#media(name='media', type='file', accept='image/*', multiple)

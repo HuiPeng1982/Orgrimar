@@ -11,7 +11,7 @@
                 .control-group
                     label.control-label(for='media') 照片
                     .controls
-                        input#media.input-file(name='avatar', type='file', , accept='image/*')
+                        input#media(name='avatar', type='file', accept='image/*')
     .modal-footer
         button#avatar_cancel.btn.btn-default(type='button', data-dismiss='modal') 取消
         button#avatar_submit.btn.btn-primary(type='button') 保存
@@ -49,5 +49,14 @@ script.
         $('#avatar_submit').click(function () {
             $('#avatar').submit();
             return false;
+        });
+        $("#media").fileinput({
+            showUpload: false,
+            browseClass: "btn btn-success",
+            browseIcon: '<i class="glyphicon glyphicon-picture"></i>',
+            browseLabel: " 选择照片",
+            removeClass: "btn btn-danger",
+            removeIcon: '<i class="glyphicon glyphicon-trash"></i>',
+            removeLabel: " 删除"
         });
     });

@@ -8,7 +8,7 @@
                     span.icon-bar
                     span.icon-bar
                     span.icon-bar
-                a.navbar-brand(href='#') Project name
+                a.navbar-brand(href='/') Project name
             div.navbar-collapse.collapse
                 ul.nav.navbar-nav
 
@@ -31,17 +31,18 @@
                     li
                         a.pu(href='/', data-toggle='tooltip', data-placement='bottom', title='消息')
                             span.glyphicon.glyphicon-envelope
-                    li.dropdown
-                        a.dropdown-toggle(href='#',data-toggle='dropdown')
-                            img.img-rounded(src='#{user.avatar}')
-                            //= user.email
-                            | 暖暖爸爸
-                        ul.dropdown-menu(role='menu')
-                            li
-                                a.pu(data-placement='bottom', data-toggle='modal', href='/setting/avatar', data-target='#avatar_Modal')
-                                    span.glyphicon.glyphicon-user
-                                    | &nbsp;&nbsp;&nbsp;头像设置
-                            li
-                                a.pu(href='/logout', data-placement='bottom')
-                                    span.glyphicon.glyphicon-off
-                                    | &nbsp;&nbsp;&nbsp;注销
+                    if user
+                        li.dropdown
+                            a.dropdown-toggle(href='#',data-toggle='dropdown')
+                                img.img-rounded(src='#{user.avatar}')
+                                //= user.email
+                                | 暖暖爸爸
+                            ul.dropdown-menu(role='menu')
+                                li
+                                    a.pu(data-placement='bottom', data-toggle='modal', href='/setting/avatar', data-target='#avatar_Modal')
+                                        span.glyphicon.glyphicon-user
+                                        | &nbsp;&nbsp;&nbsp;头像设置
+                                li
+                                    a.pu(href='/logout', data-placement='bottom')
+                                        span.glyphicon.glyphicon-off
+                                        | &nbsp;&nbsp;&nbsp;注销

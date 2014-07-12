@@ -1,26 +1,51 @@
 @import url("_navbar.css");
 @import url("http://cdn.bootcss.com/ResponsiveSlides.js/1.53/responsiveslides.min.css");
 @import url("_card.css");
+@import url("third-party.css");
 
-body{
+body {
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
     margin-top: 50px;
 }
 
+textarea {
+    width: 100%;
+    max-width: 100%;
+    resize: none;
+}
+
+.pace .pace-progress {
+    background: red;
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    left: 0;
+    height: 2px;
+
+    -webkit-transition: width 1s;
+    -moz-transition: width 1s;
+    -o-transition: width 1s;
+    transition: width 1s;
+}
+
+.pace-inactive {
+    display: none;
+}
+
 .drop-shadow.top {
-    box-shadow: 0 -4px 2px -2px rgba(0,0,0,0.4);
+    box-shadow: 0 -4px 2px -2px rgba(0, 0, 0, 0.4);
 }
 
 .drop-shadow.right {
-    box-shadow: 4px 0 2px -2px rgba(0,0,0,0.4);
+    box-shadow: 4px 0 2px -2px rgba(0, 0, 0, 0.4);
 }
 
 .drop-shadow.bottom {
-    box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.4);
 }
 
 .drop-shadow.left {
-    box-shadow: -4px 0 2px -2px rgba(0,0,0,0.4);
+    box-shadow: -4px 0 2px -2px rgba(0, 0, 0, 0.4);
 }
 
 
